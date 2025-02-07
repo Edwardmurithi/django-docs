@@ -25,16 +25,21 @@ def index(request):
 # '''shortcut: get_object_or_404()
 # It's a very common idiom to use get() and raise Http404 if the object does
 # not exist.
+
 # The get_object_or_404() function takes a django model as its first argument
 # and an arbitrary number of keyword arguments, which it passes to the get() 
 # function of the model manager. it raises Http404 if the object doesn't eixst.
+
+# There’s also a get_list_or_404() function, which works just as
+#  get_object_or_404() – except using filter() instead of get(). 
+# It raises Http404 if the list is empty.
 # '''
 def detail(request, question_id):
     # try:
     #     question = Question.objects.get(pk=question_id)
     # except Question.DoesNotExist:
     #     raise Http404("Question does not exist")
-    question = question = get_object_or_404(Question, pk=question_id)
+    question = get_object_or_404(Question, pk=question_id)
     return render(request, 'polls/detail.html', {"question": question})
 
 
